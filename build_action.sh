@@ -24,8 +24,11 @@ cp ../config .config
 # disable DEBUG_INFO to speedup build
 scripts/config --disable DEBUG_INFO
 
-# apply patches
-# shellcheck source=src/util.sh
+# ------fix_error------
+git init
+git add .
+git commit -m "Initial commit from tarball"
+
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
