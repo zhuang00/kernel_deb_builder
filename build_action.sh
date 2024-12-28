@@ -5,7 +5,7 @@ sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 
 # install dep
 apt update
-apt install bc bison build-essential fakeroot flex git libelf-dev libssl-dev ncurses-dev rsync wget xz-utils -y
+apt install bc bison build-essential fakeroot flex git libelf-dev libssl-dev ncurses-dev rsync wget xz-utils devscripts -y
 apt build-dep -y linux
 
 # change dir to workplace
