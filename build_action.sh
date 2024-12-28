@@ -5,22 +5,7 @@ sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 
 # install dep
 apt update
-apt-get install -y \
-            build-essential \
-            libncurses-dev \
-            bison \
-            flex \
-            libssl-dev \
-            libelf-dev \
-            bc \
-            curl \
-            git \
-            wget \
-            libudev-dev \
-            fakeroot \
-            debhelper \
-            devscripts \
-            libperl-dev
+apt-get install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev
 apt build-dep -y linux
 
 # change dir to workplace
@@ -42,7 +27,7 @@ scripts/config --disable DEBUG_INFO
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-make bindeb-pkg -j"$CPU_CORES"
+make  -j"$CPU_CORES" deb-pkg LOCALVERSION=-custom
 
 # move deb packages to artifact dir
 cd ..
