@@ -5,7 +5,7 @@ sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 
 # install dep
 apt update
-apt install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev git
+apt install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev git debhelper-compat=12 libelf-dev
 apt build-dep -y linux
 
 # change dir to workplace
