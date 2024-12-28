@@ -27,7 +27,7 @@ scripts/config --disable DEBUG_INFO
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-make  -j"$CPU_CORES" deb-pkg LOCALVERSION=-custom
+make  -j"$CPU_CORES" bindeb-pkg  LOCALVERSION=-custom
 
 # move deb packages to artifact dir
 cd ..
