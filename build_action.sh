@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
-
 # add deb-src to sources.list
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 
@@ -14,9 +12,9 @@ apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
-wget http://www.kernel.org/pub/linux/kernel/v6.x/linux-"$VERSION".tar.xz
-tar -xf linux-"$VERSION".tar.xz
-cd linux-"$VERSION" || exit
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.7.tar.xz
+tar -xf linux-6.12.7.tar.xz
+cd linux-6.12.7 || exit
 
 # copy config file
 cp ../config .config
