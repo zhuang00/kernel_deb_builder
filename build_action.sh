@@ -24,15 +24,12 @@ cp ../config .config
 # disable DEBUG_INFO to speedup build
 scripts/config --disable DEBUG_INFO
 
-# ------fix_error------
-git init
-git add .
-git commit -m "Initial commit from tarball"
+
 
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-make deb-pkg -j"$CPU_CORES"
+make bindeb-pkg -j"$CPU_CORES"
 
 # move deb packages to artifact dir
 cd ..
