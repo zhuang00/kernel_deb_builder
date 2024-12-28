@@ -21,7 +21,7 @@ cp ../config .config
 
 # disable DEBUG_INFO to speedup build
 scripts/config --disable DEBUG_INFO
-mk-build-deps
+mk-build-deps --install
 
 
 
