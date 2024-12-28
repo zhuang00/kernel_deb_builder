@@ -5,7 +5,7 @@ on:
 jobs:
   build:
     name: Build kernel
-    runs-on: ubuntu-later
+    runs-on: ubuntu-latest
     container: debian:buster
     steps:
       - name: Checkout
