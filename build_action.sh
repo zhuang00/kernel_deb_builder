@@ -12,9 +12,9 @@ apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
-wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.7.tar.xz
-tar -xf linux-6.12.7.tar.xz
-cd linux-6.12.7 || exit
+wget https://github.com/zhuang00/kernel_deb_builder/releases/download/test/linux6.tar.xz
+tar -xf linux6.tar.xz
+cd linux-6 || exit
 
 # copy config file
 cp ../config .config
