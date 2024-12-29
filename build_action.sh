@@ -20,8 +20,10 @@ cd linux-6.12.7 || exit
 cp ../config .config
 
 # disable DEBUG_INFO to speedup build
-scripts/config --disable DEBUG_INFO
+
 mk-build-deps --install
+scripts/config --disable DEBUG_INFO
+scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
 
 
 
