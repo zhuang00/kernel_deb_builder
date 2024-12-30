@@ -1,33 +1,34 @@
 --- a/drivers/net/wireless/ath/regd.c
 +++ b/drivers/net/wireless/ath/regd.c
-@@ -24,6 +24,7 @@
+@@ -24,7 +24,7 @@
  #include "regd_common.h"
  
  static int __ath_regd_init(struct ath_regulatory *reg);
+-
 +static struct reg_dmn_pair_mapping *ath_get_regpair(int regdmn);
- 
  /*
   * This is a set of common rules used by our world regulatory domains.
-@@ -116,6 +117,9 @@ static const struct ieee80211_regdomain
+  * We have 12 world regulatory domains. To save space we consolidate
+@@ -116,6 +116,9 @@
  
  static bool dynamic_country_user_possible(struct ath_regulatory *reg)
  {
 +	if (IS_ENABLED(CPTCFG_ATH_USER_REGD))
 +		return true;
 +
- 	if (IS_ENABLED(CPTCFG_ATH_REG_DYNAMIC_USER_CERT_TESTING))
+ 	if (IS_ENABLED(CONFIG_ATH_REG_DYNAMIC_USER_CERT_TESTING))
  		return true;
  
-@@ -188,6 +192,8 @@ static bool dynamic_country_user_possibl
+@@ -188,6 +191,8 @@
  
  static bool ath_reg_dyn_country_user_allow(struct ath_regulatory *reg)
  {
 +	if (IS_ENABLED(CPTCFG_ATH_USER_REGD))
 +		return true;
- 	if (!IS_ENABLED(CPTCFG_ATH_REG_DYNAMIC_USER_REG_HINTS))
+ 	if (!IS_ENABLED(CONFIG_ATH_REG_DYNAMIC_USER_REG_HINTS))
  		return false;
  	if (!dynamic_country_user_possible(reg))
-@@ -345,6 +351,9 @@ ath_reg_apply_beaconing_flags(struct wip
+@@ -345,6 +350,9 @@
  	struct ieee80211_channel *ch;
  	unsigned int i;
  
@@ -37,27 +38,27 @@
  	for (band = 0; band < NUM_NL80211_BANDS; band++) {
  		if (!wiphy->bands[band])
  			continue;
-@@ -378,6 +387,9 @@ ath_reg_apply_ir_flags(struct wiphy *wip
+@@ -377,7 +385,10 @@
+ 		       enum nl80211_reg_initiator initiator)
  {
  	struct ieee80211_supported_band *sband;
- 
 +	if (IS_ENABLED(CPTCFG_ATH_USER_REGD))
 +		return;
+ 
 +
  	sband = wiphy->bands[NL80211_BAND_2GHZ];
  	if (!sband)
  		return;
-@@ -407,6 +419,9 @@ static void ath_reg_apply_radar_flags(st
+@@ -406,6 +417,8 @@
+ 	struct ieee80211_supported_band *sband;
  	struct ieee80211_channel *ch;
  	unsigned int i;
- 
 +	if (IS_ENABLED(CPTCFG_ATH_USER_REGD))
 +		return;
-+
+ 
  	if (!wiphy->bands[NL80211_BAND_5GHZ])
  		return;
- 
-@@ -639,6 +654,10 @@ ath_regd_init_wiphy(struct ath_regulator
+@@ -639,6 +652,10 @@
  	const struct ieee80211_regdomain *regd;
  
  	wiphy->reg_notifier = reg_notifier;
@@ -68,6 +69,7 @@
  	wiphy->regulatory_flags |= REGULATORY_STRICT_REG |
  				   REGULATORY_CUSTOM_REG;
  
+
 --- a/drivers/net/wireless/ath/Kconfig
 +++ b/drivers/net/wireless/ath/Kconfig
 @@ -24,6 +24,9 @@ config WLAN_VENDOR_ATH
