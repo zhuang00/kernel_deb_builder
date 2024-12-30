@@ -16,18 +16,18 @@ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.7.tar.xz
 tar -xf linux-6.12.7.tar.xz
 cd linux-6.12.7 || exit
 
-# copy config file
+copy config file
 cp ../config .config
 
-#patch 
-cp ../regd.patch regd.patch
-cp ../Kconf.patch Kconf.patch
-patch -p1 < regd.patch
+# #patch 
+# cp ../regd.patch regd.patch
+# cp ../Kconf.patch Kconf.patch
+# patch -p1 < regd.patch
 
-patch -p1 < Kconf.patch
+# patch -p1 < Kconf.patch
 
-sleep 10
-echo "10秒后继续执行"
+# sleep 10
+# echo "10秒后继续执行"
 
 # disable DEBUG_INFO to speedup build
 
