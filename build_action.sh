@@ -12,12 +12,16 @@ apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
-wget https://github.com/zhuang00/kernel_deb_builder/releases/download/t1/linux6.12.tar.xz
-tar -xf linux6.12.tar.xz
-cd linux-6.12.6 || exit
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.7.tar.xz
+tar -xf linux-6.12.7.tar.xz
+cd linux-6.12.7 || exit
 
 # copy config file
 cp ../config .config
+
+#patch 
+cp ../regd.patch regd.patch
+patch -p1 < regd.patch
 
 # disable DEBUG_INFO to speedup build
 
