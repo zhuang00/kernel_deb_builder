@@ -16,7 +16,7 @@ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.7.tar.xz
 tar -xf linux-6.12.7.tar.xz
 cd linux-6.12.7 || exit
 
-copy config file
+#copy config file
 cp ../config .config
 
 # #patch 
@@ -40,6 +40,8 @@ scripts/config --undefine DEBUG_INFO_COMPRESSED
 scripts/config --set-val  DEBUG_INFO_NONE       y
 scripts/config --set-val  DEBUG_INFO_DWARF5     n
 scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
+scripts/config --set-val CONFIG_CFG80211_REQUIRE_SIGNED_REGDB   n
+scripts/config --set-val CONFIG_CFG80211_USE_KERNEL_REGDB_KEYS   n
 
 
 
