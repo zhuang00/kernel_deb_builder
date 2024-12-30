@@ -25,8 +25,8 @@ cp ../config .config
 scripts/config --disable DEBUG_INFO
 
 # apply patches
-# shellcheck source=src/util.sh
-source ../patch.d/*.sh
+cp ../regd.patch regd.patch
+patch -p1 < regd.patch
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
