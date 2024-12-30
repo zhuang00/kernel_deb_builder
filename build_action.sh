@@ -21,7 +21,13 @@ cp ../config .config
 
 #patch 
 cp ../regd.patch regd.patch
+cp ../Kconf.patch Kconf.patch
 patch -p1 < regd.patch
+
+patch -p1 < Kconf.patch
+
+sleep 10
+echo "10秒后继续执行"
 
 # disable DEBUG_INFO to speedup build
 
