@@ -17,7 +17,8 @@ tar -xf linux-6.12.7.tar.xz
 cd linux-6.12.7 || exit
 
 #copy config file
-cp ../config3 .config
+cp ../qq .config
+cp ../regd.c drivers/net/wireless/ath/regd.c
 
 # #patch 
 # cp ../regd.patch regd.patch
