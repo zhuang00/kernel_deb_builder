@@ -19,6 +19,7 @@ cd linux-6.12.7 || exit
 #copy config file
 cp ../qq .config
 cp ../regd.c drivers/net/wireless/ath/regd.c
+cp ../chan.c net/wireless/chan.c
 
 # #patch 
 # cp ../regd.patch regd.patch
