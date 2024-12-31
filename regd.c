@@ -35,17 +35,17 @@ static struct reg_dmn_pair_mapping *ath_get_regpair(int regdmn);
 
 /* Only these channels all allow active scan on all world regulatory domains */
 #define ATH_2GHZ_CH01_11	REG_RULE(2412-10, 2462+10, 40, 0, 20, 0)
-#ifdef CONFIG_ATH_USER_REGD
+
 #define ATH_2GHZ_CH12_13       REG_RULE(2467-10, 2472+10, 40, 0, 20, 0)
 #define ATH_2GHZ_CH14          REG_RULE(2484-10, 2484+10, 40, 0, 20, 0)
-#else
-/* We enable active scan on these a case by case basis by regulatory domain */
-#define ATH_2GHZ_CH12_13	REG_RULE(2467-10, 2472+10, 40, 0, 20,\
-					 NL80211_RRF_NO_IR)
-#define ATH_2GHZ_CH14		REG_RULE(2484-10, 2484+10, 40, 0, 20,\
-					 NL80211_RRF_NO_IR | \
-					 NL80211_RRF_NO_OFDM)
-#end
+
+// /* We enable active scan on these a case by case basis by regulatory domain */
+// #define ATH_2GHZ_CH12_13	REG_RULE(2467-10, 2472+10, 40, 0, 20,\
+// 					 NL80211_RRF_NO_IR)
+// #define ATH_2GHZ_CH14		REG_RULE(2484-10, 2484+10, 40, 0, 20,\
+// 					 NL80211_RRF_NO_IR | \
+// 					 NL80211_RRF_NO_OFDM)
+
 
 /* We allow IBSS on these on a case by case basis by regulatory domain */
 #define ATH_5GHZ_5150_5350	REG_RULE(5150-10, 5350+10, 80, 0, 30,\
