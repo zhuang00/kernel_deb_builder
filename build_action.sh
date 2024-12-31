@@ -17,7 +17,7 @@ tar -xf linux-6.12.7.tar.xz
 cd linux-6.12.7 || exit
 
 #copy config file
-cp ../config1 .config
+cp ../config3 .config
 
 # #patch 
 # cp ../regd.patch regd.patch
